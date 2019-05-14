@@ -27,7 +27,8 @@ defmodule Stat.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:absinthe, "~> 1.4"},
       {:absinthe_plug, "~> 1.4"},
-      {:jason, "~> 1.1"}
+      {:jason, "~> 1.1"},
+      {:dataloader, "~> 1.0.0"}
     ]
   end
 end

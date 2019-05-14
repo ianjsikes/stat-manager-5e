@@ -4,18 +4,20 @@ defmodule Stat.Application do
   @moduledoc false
 
   use Application
+  require Logger
 
   def start(_type, _args) do
-    # List all child processes to be supervised
     children = [
-      Stat.Repo
-      # Starts a worker by calling: Stat.Worker.start_link(arg)
-      # {Stat.Worker, arg}
+      Stat.Repo,
+      {Plug.Cowboy, scheme: :http, plug: Stat.Router, options: [port: cowboy_port()]}
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Stat.Supervisor]
+
+    Logger.info("Starting application...")
+
     Supervisor.start_link(children, opts)
   end
+
+  defp cowboy_port, do: Application.get_env(:stat, :cowboy_port, 8080)
 end
