@@ -9,6 +9,7 @@ config :stat, Stat.Repo,
   password: "stats",
   hostname: "localhost"
 
+config :stat, ecto_repos: [Stat.Repo]
 config :stat, cowboy_port: 8080
 
 # This configuration is loaded before any dependency and is restricted

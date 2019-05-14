@@ -8,6 +8,7 @@ defmodule Stat.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
+      Stat.Repo
       # Starts a worker by calling: Stat.Worker.start_link(arg)
       # {Stat.Worker, arg}
     ]
